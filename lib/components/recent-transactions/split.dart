@@ -58,7 +58,7 @@ class TransactionDetails extends StatelessWidget {
                 children: [
                   Text(
                     expense.expenseName,
-                    style: TextStyle(fontWeight: FontWeight.bold),
+                    style: const TextStyle(fontWeight: FontWeight.bold),
                   ),
                   Text("Rs.${expense.amount}"),
                   // Text("Paid by whom"),

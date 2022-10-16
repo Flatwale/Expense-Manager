@@ -7,12 +7,16 @@ class Expense {
   double amount;
   bool isPersonal;
   User partnerUser = User(email: '', name: '', uid: '');
+  ExpenseCategory expenseCategory;
 
   Expense(
-      {required this.date,
+      {required this.expenseCategory,
+      required this.date,
       required this.primaryUser,
       required this.amount,
       required this.expenseName,
       required this.isPersonal,
       required this.partnerUser});
 }
+
+enum ExpenseCategory { food, service, travelling, medical, personal, other }

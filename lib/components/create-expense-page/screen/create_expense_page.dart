@@ -6,7 +6,18 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 String dropdownvalue = 'General';
-var items = ['General','Foods & Drinks','Travel','Entertainment','Bills & Utilities','Groceries','Fuel','Shopping','Commute','Others'];
+var items = [
+  'General',
+  'Foods & Drinks',
+  'Travel',
+  'Entertainment',
+  'Bills & Utilities',
+  'Groceries',
+  'Fuel',
+  'Shopping',
+  'Commute',
+  'Others'
+];
 
 class CreateExpensePage extends StatefulWidget {
   const CreateExpensePage({Key? key}) : super(key: key);
@@ -54,7 +65,6 @@ class _CreateExpensePageState extends State<CreateExpensePage> {
                 controller: expenseNameBoxController,
               ),
             ),
-
             DropdownButton(
               value: dropdownvalue,
               icon: const Icon(Icons.keyboard_arrow_down),
@@ -74,15 +84,14 @@ class _CreateExpensePageState extends State<CreateExpensePage> {
                 });
               },
             ),
-
             const SizedBox(
               height: 20,
               width: double.infinity,
             ),
-
             ElevatedButton(
               onPressed: () {
                 Expense e = Expense(
+                    expenseCategory: ExpenseCategory.food,
                     date: DateTime.now(),
                     primaryUser: original,
                     amount: double.parse(amountBoxController.text),
@@ -92,12 +101,16 @@ class _CreateExpensePageState extends State<CreateExpensePage> {
 
                 Provider.of<ExpenseProvider>(context, listen: false)
                     .addExpense(e);
-
+                setState(() {
+                  Provider.of<ExpenseProvider>(context, listen: false)
+                      .updateTotal(double.parse(amountBoxController.text));
+                });
+                print(Provider.of<ExpenseProvider>(context, listen: false)
+                    .expenses);
                 Navigator.of(context).pop();
               },
-              style: ElevatedButton.styleFrom(
-                backgroundColor: primaryColor, // Background color
-              ),
+              style: ButtonStyle(
+                  backgroundColor: MaterialStateProperty.all(primaryColor)),
               child: Container(
                 height: 50,
                 width: 200,
