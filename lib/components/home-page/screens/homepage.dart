@@ -27,6 +27,7 @@ class _HomePageState extends State<HomePage> {
               builder: (context) => const CreateExpensePage()));
         },
         backgroundColor: primaryColor,
+        child: Icon(Icons.add),
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
